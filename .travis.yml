@@ -5,10 +5,14 @@ jobs:
       name: "deploy"
       script:
         - go run main.go
-       deploy:
+        - go build -o automatic_disco main.go
+      deploy:
         provider: releases
-        api_key: $GITHUB_OAUTH_TOKEN
+        api_key: $GITHUB_TOKEN
         skip_cleanup: true
+        draft: true
+        file: "automatic_disco"
         on:
           tags: true
+
 
